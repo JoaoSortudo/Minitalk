@@ -32,6 +32,13 @@ void	send_signal(int pid, char *msg)
 		}
 		i++;
 	}
+	byte = 7;
+	while (byte >= 0)
+	{
+		kill(pid, SIGUSR2);
+		byte--;
+		usleep(100);
+	}
 }
 
 int	ft_atoi(const char *str)
