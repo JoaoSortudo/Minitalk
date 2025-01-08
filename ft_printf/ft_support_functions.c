@@ -43,5 +43,3 @@ int	ft_print_void(void *ptr)
 	count += ft_print_hex(adress, 0);
 	return (count);
 }
-0xfa300b0102
-64653123135465132154677653213463153465732
