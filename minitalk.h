@@ -18,14 +18,9 @@
 # include <unistd.h>
 # include <signal.h>
 
-# ifndef SLEEP_TIME
-#  define SLEEP_TIME 100
-# endif
-
 void	convert_signal(int signal);
 void	send_signal(int pid, char *msg);
 int		ft_atoi(const char *str);
 int		ft_printf(const char *format, ...);
-
 
 #endif

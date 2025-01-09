@@ -11,24 +11,19 @@
 /* ************************************************************************** */
 
 #include "minitalk.h"
-//esse programa irá printar no terminal o seu PID atual(para ser utilizado pelo client), e ficará aguardando os sinais enviados pelo client, que serão tratados com uma função para interpretar os sinais e gerar um caracter
 
-//esboço
 void	convert_signal(int signal)
 {
-	static char	byte = '\0'; //nessa etapa, é o mesmo que escrever byte = 0b00000000
-	static int	count = 7;//os 8 bits de um byte -> de 7 a 0
+	static char	byte = '\0';
+	static int	count = 7;
 
-    //se o sinal enviado for 1, coloque 1 no bit equivalente
 	if (signal == SIGUSR1)
 		byte = byte | (1 << count--);
-    //se o sinal enviado for 0, mantenha 0 no bit equivalente
 	else if (signal == SIGUSR2)
 		count--;
-    //se tiver corrido todos os 8 bits(contou de 7 até 0), formamos um caractere em byte, imprimimos ele e resetamos as contagens
 	if (count == -1)
 	{	
-		if(byte)
+		if (byte)
 			ft_printf("%c", byte);
 		else
 			ft_printf("\n");
@@ -37,13 +32,12 @@ void	convert_signal(int signal)
 	}
 }
 
-int main (void)
+int	main(void)
 {
-    ft_printf("%i\n", getpid()); //vai imprimir na tela  PID atual
-    //chamada da convert_signal
-    signal(SIGUSR1, convert_signal);
-    signal(SIGUSR2, convert_signal);
+	ft_printf("%i\n", getpid());
+	signal(SIGUSR1, convert_signal);
+	signal(SIGUSR2, convert_signal);
 	while (1)
 		;
-    return (0);
+	return (0);
 }
